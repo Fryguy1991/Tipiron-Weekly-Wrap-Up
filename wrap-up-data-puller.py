@@ -1,5 +1,6 @@
 import json
 import requests
+import sys
 
 class TippyMember:
 	def __init__(self, userData, score, starters, bench, matchupId):
@@ -55,8 +56,11 @@ def printWithPlayerNames(playerScoreTuples, playerData, listName, positionsToExc
 
 # Don't change the league ID unless you want to pull data from another league
 tippyLeagueId = 1048437082550652928
-# Set below with the number of the week you'd like to pull data
-week = input("What week do you want to write a wrap up for?\n")
+
+try:
+	week = sys.argv[1]
+except:
+	week = input("What week do you want to write a wrap up for?\n")
 
 tippyRosterDataCall = 'https://api.sleeper.app/v1/league/{0}/rosters'.format(tippyLeagueId)
 tippyUserDataCall = 'https://api.sleeper.app/v1/league/{0}/users'.format(tippyLeagueId)
